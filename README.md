@@ -4,7 +4,9 @@
 
 **POST** login/signin?id=null&pw=null
 
-**GET** login/info/id=null
+**GET** login/signout?token=null
+
+**GET** user/info/id=null
 
 **GET** meeting?id=null&token=null
 
