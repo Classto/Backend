@@ -1,16 +1,16 @@
 from fastapi import FastAPI
 import uvicorn
 
-from routers import Login, Meeting, User
+from routers import login_router, Meeting, User
 
 app = FastAPI(
     name="classto-backend",
     description="manage your life during COVID-19 better",
     version="0.0.1"
 )
-app.include_router(Login.router)
-app.include_router(Meeting.router)
-app.include_router(User.router)
+app.include_router(login_router)
+# app.include_router(Meeting.router)
+# app.include_router(User.router)
 
 
 @app.get("/")
