@@ -15,6 +15,8 @@ class Database:
         self.cursor.execute(f" INSERT INTO User(id,email,pw,current_category) VALUES({id},{email},{pw},{user.current_category}) ")
         self.conn.commit()
 
+        return id
+
     def exits(self, email):
         email = to_hash(email)
         self.cursor.execute(f" SELECT count(*) FROM User WHERE email = '{email}' ")
