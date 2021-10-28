@@ -4,7 +4,6 @@ from dataclasses import dataclass, field
 from typing import Optional
 
 class User(BaseModel):
-    id: float
     email: str
     pw: str
     current_category: Optional[str] = "sample"

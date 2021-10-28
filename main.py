@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 import uvicorn
 
-from routers import login_router, Meeting, User
+from app import login_router
 
 app = FastAPI(
     name="classto-backend",
@@ -11,7 +11,6 @@ app = FastAPI(
 app.include_router(login_router)
 # app.include_router(Meeting.router)
 # app.include_router(User.router)
-
 
 @app.get("/")
 async def main():
