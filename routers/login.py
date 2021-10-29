@@ -31,4 +31,12 @@ class Login:
 
     @login_router.post("/auth/register")
     async def register(self, user: User):
-        pass
+        if DATABASE.exits(user.email):
+            raise HTTPException(403, detail="email already used")
+
+        id = DATABASE.register(user)
+
+        return {
+            "user" : user,
+            "id" : id
+        }

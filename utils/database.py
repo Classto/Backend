@@ -12,9 +12,9 @@ class Database:
         email = to_hash(user.email)
         pw = to_hash(user.pw)
 
-        self.cursor.execute(f" INSERT INTO User(id,email,pw,current_category) VALUES({id},'{email}','{pw}','{user.current_category}') ")
+        self.cursor.execute(f" INSERT INTO User(id,email,pw,current_category) VALUES({id},'{email}','{pw}','sample') ")
         self.conn.commit()
-
+        
         return id
 
     def info(self, id) -> tuple:

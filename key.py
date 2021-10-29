@@ -7,4 +7,4 @@ def new_id():
     return id
 
 def to_hash(data):
-    hashlib.sha224(bytes(data, "utf-8")).hexdigest()
+    return hashlib.sha224(bytes(data, "utf-8")).hexdigest()
