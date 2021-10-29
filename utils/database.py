@@ -8,6 +8,9 @@ class Database:
         self.conn = sqlite3.connect("database/database.db")
         self.cursor = self.conn.cursor()
 
+        self.SCHEDULE = "Meetings"
+        self.CATEGRY = "Category"
+
     def register(self, user) -> int:
         id = new_id()
         email = to_hash(user.email)
@@ -42,10 +45,14 @@ class Database:
 
         return id
 
-    def info(self, id) -> tuple:
+    def info(self, id) -> dict:
         self.cursor.execute(f" SELECT * FROM User WHERE id = '{id}'")
-        data  = self.cursor.fetchone()
-
+        data = self.cursor.fetchone()
+        data = {
+            "id" : data[3],
+            "email" : data[0],
+            "current_category" : data[2]
+        }
         return data
 
     def get_id(self, email) -> int:
@@ -64,7 +71,7 @@ class Database:
             return False
         return True
 
-    def search(self, id, table) -> dict:
+    def search(self, id, table: str) -> dict:
         self.cursor.execute(f" SELECT * FROM {table} WHERE id = '{id}'")
         data = self.cursor.fetchone()[1]
 
