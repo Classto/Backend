@@ -64,8 +64,8 @@ class Database:
             return False
         return True
 
-    def category(self, id) -> dict:
-        self.cursor.execute(f" SELECT * FROM Category WHERE id = '{id}'")
+    def search(self, id, table) -> dict:
+        self.cursor.execute(f" SELECT * FROM {table} WHERE id = '{id}'")
         data = self.cursor.fetchone()[1]
 
         return json.loads(data)
