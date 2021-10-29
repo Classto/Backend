@@ -1,6 +1,6 @@
 from hashlib import new
 import sqlite3
-from utils import new_id
+from key import new_id
 
 from calendar import timegm
 from time import gmtime
@@ -11,14 +11,14 @@ def time_stamp() -> int:
 
 class Session:
     def __init__(self):
-        self.conn = sqlite3.connect("database/database.db")
+        self.conn = sqlite3.connect("database/session.db")
         self.cursor = self.conn.cursor()
 
     def new_session(self, user, id):
         ex_time = time_stamp() + 3600
         session_id = new_id()
 
-        self.cursor.execute(f" INSERT INTO User(id,email,pw,expir_time,session_id) VALUES({id},{user.email},{user.pw},{ex_time},{session_id}) ")
+        self.cursor.execute(f" INSERT INTO User(id,email,pw,expir_time,session_id) VALUES({id},'{user.email}','{user.pw}',{ex_time},{session_id}) ")
         self.conn.commit()
 
         return session_id

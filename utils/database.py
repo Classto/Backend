@@ -1,6 +1,6 @@
-from hashlib import new
 import sqlite3
-from utils import new_id, to_hash
+from key import new_id, to_hash
+
 
 class Database:
     def __init__(self):
@@ -38,6 +38,7 @@ class Database:
         if self.cursor.fetchone()[0] == 0:
             return False
         return True
+
 
 if __name__ == "__main__":
     database = Database()

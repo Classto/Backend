@@ -6,7 +6,6 @@ from typing import Optional
 class User(BaseModel):
     email: str
     pw: str
-    current_category: Optional[str] = "sample"
 
 @dataclass
 class Meeting:
