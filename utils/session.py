@@ -23,6 +23,14 @@ class Session:
 
         return session_id
 
+    def extend(self, session_id):
+        expir_time = self.cursor.execute(f" SELECT * FROM User WHERE session_id = {session_id}")[3]
+        expir_time += 60 * 30
+        self.cursor.execute(f" UPDATE User SET expir_time = {expir_time} WHERE session_id = {session_id}")
+        self.conn.commit()
+
+        return expir_time
+
     def find(self, session_id):
         self.cursor.execute(f" SELECT * FROM User WHERE session_id = '{session_id}' ")
         user = self.cursor.fetchone()
