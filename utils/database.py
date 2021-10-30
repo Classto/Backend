@@ -77,6 +77,12 @@ class Database:
 
         return json.loads(data)
 
+    def edit(self, id, table: str, data: dict) -> str:
+        data = json.dumps(data)
+        self.cursor.execute(f"UPDATE {table} SET {table.lower()} = '{data}' WHERE id = {id}")
+        self.conn.commit()
+
+        return data
 
 if __name__ == "__main__":
     database = Database()
