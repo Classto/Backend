@@ -10,9 +10,10 @@ class User(BaseModel):
 @dataclass
 class Meeting:
     id: float
-    pw: str
+    password: str
     time: str
     link: str
+    category: str
     repeating_days: field(default_factory=list)
     name: str = "Meeting"
 

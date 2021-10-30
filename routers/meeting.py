@@ -2,7 +2,10 @@ from fastapi_utils.inferring_router import InferringRouter
 from fastapi_utils.cbv import cbv
 from fastapi import HTTPException
 
+from models import Meeting
+
 from app import SESSION, DATABASE
+from typing import List
 
 meeting_router = InferringRouter()
 
@@ -43,3 +46,17 @@ class Meeting:
             "id" : id,
             "data" : category
         }
+    
+    @meeting_router.post("/schedule/{id}")
+    async def edit_schedule(self, id: int, meeting: Meeting):
+        user = get_user(id)
+
+        schedule = DATABASE.search(user.id, DATABASE.SCHEDULE)
+        schedule[meeting.category].append(meeting)
+        DATABASE.edit(user.id, DATABASE.SCHEDULE, schedule)
+
+        return {
+            "id" : id,
+            "schedule" : schedule[meeting.category]
+        }
+
