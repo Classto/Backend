@@ -34,9 +34,18 @@ class Login:
         if DATABASE.exits(user.email):
             raise HTTPException(403, detail="email already used")
 
-        id = DATABASE.register(user)
+        is_valid = requests.get(
+            "https://isitarealemail.com/api/email/validate",
+            params = {"email" : user.email}
+        ).json()['status']
 
-        return {
-            "user" : user,
-            "id" : id
-        }
+        if is_valid == "valid":
+            id = DATABASE.register(user)
+
+            return {
+                "user" : user,
+                "id" : id
+            }
+        else:
+            raise HTTPException(400, detail="email not allowed")
+        

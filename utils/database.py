@@ -17,24 +17,17 @@ class Database:
         pw = to_hash(user.pw)
         meetings = json.dumps(
             {
-                "sample": [
-                    { 
-                        "name": "sample meeting",
-                        "time": "12:59",
-                        "link": "meeting link",
-                        "id": 1234,
-                        "password": 1234,
-                        "repeating-days" : [] 
-                    }, 
+                "example": [
                     {
-                        "name": "meet",
-                        "time": "00:00", 
-                        "link": "link", 
-                        "id":1, 
-                        "password": 1234, 
-                        "repeating-days" : [] 
-                    } 
-                ] 
+                        "name": "Example Meeting",
+                        "time": "00:00",
+                        "link": "meeting link",
+                        "nickname": "nickname",
+                        "id": 11111111111,
+                        "password": 1,
+                        "repeating-days" : []
+                    }
+                ]
             }
         )
 
@@ -86,4 +79,27 @@ class Database:
 
 if __name__ == "__main__":
     database = Database()
-    database.exits("asdf")
+    print("-----------Classto Database-----------")
+    database.cursor.execute(''' CREATE TABLE "User" (
+	    "email"	TEXT,
+	    "pw"	TEXT,
+	    "current_category"	TEXT,
+	    "id"	INTEGER,
+	    PRIMARY KEY("id")
+    ) ''')
+    print("created User table")
+    database.cursor.execute(''' CREATE TABLE "Meetings" (
+	    "id"	INTEGER,
+	    "meetings"	TEXT,
+	    PRIMARY KEY("id")
+    ) ''')
+    print("created Meetings table")
+    database.cursor.execute(''' CREATE TABLE "Category" ( 
+    	"id"	INTEGER,
+	    "category"	TEXT,
+	    PRIMARY KEY("id")
+    ) ''')
+    print("created Category table")
+    database.conn.commit()
+
+    print("initialized main database")

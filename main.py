@@ -6,7 +6,8 @@ from routers import login_router, meeting_router #, user_router
 app = FastAPI(
     name="classto-backend",
     description="manage your life during COVID-19 better",
-    version="0.0.1"
+    version="0.0.1",
+    docs_url="/docs"
 )
 app.include_router(login_router)
 app.include_router(meeting_router)

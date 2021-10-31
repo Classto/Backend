@@ -35,6 +35,17 @@ class Session:
         self.cursor.execute(f" SELECT * FROM User WHERE session_id = '{session_id}' ")
         user = self.cursor.fetchone()
 
-        if not user == () and user[3] > time_stamp():
+        if user == None or user[3] < time_stamp():
             return ()
         return user
+
+if __name__ == "__main__":
+    session = Session()
+    print("-----------Classto Session Database-----------")
+    session.conn.execute(''' CREATE TABLE "User" (
+	    "id"	INTEGER,
+	    "expir_time"	INTEGER,
+	    "session_id"	INTEGER,
+	    PRIMARY KEY("session_id")
+    ) ''')
+    print("initialized session database")
