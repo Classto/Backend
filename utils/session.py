@@ -18,7 +18,7 @@ class Session:
         ex_time = time_stamp() + 3600
         session_id = new_id()
 
-        self.cursor.execute(f" INSERT INTO User(id,email,pw,expir_time,session_id) VALUES({id},'{user.email}','{user.pw}',{ex_time},{session_id}) ")
+        self.cursor.execute(f" INSERT INTO User(id,expir_time,session_id) VALUES({id},{ex_time},{session_id}) ")
         self.conn.commit()
 
         return session_id
@@ -35,7 +35,9 @@ class Session:
         self.cursor.execute(f" SELECT * FROM User WHERE session_id = '{session_id}' ")
         user = self.cursor.fetchone()
 
-        if user == None or user[3] < time_stamp():
+        if user == None:
+            return ()
+        elif user[1] < time_stamp():
             return ()
         return user
 

@@ -20,7 +20,7 @@ def get_user(id):
         raise HTTPException(404, detail="user not found")
 
     user = DATABASE.info(session[0])
-    user["expir_time"] = session[3]
+    user["expir_time"] = session[1]
 
     return user
 

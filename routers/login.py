@@ -21,12 +21,14 @@ class Login:
             raise HTTPException(404, detail="user not found")
 
         id = DATABASE.get_id(user.email)
+        current_category = DATABASE.info(id)["current_category"]
         session_id = SESSION.new_session(user, id)
 
         return {
             "user" : user,
             "id" : id,
-            "session_id" : session_id
+            "session_id" : session_id,
+            "current_category" : current_category
         }
 
     @login_router.post("/auth/register")
