@@ -1,13 +1,5 @@
 # Backend
 
-**POST** login/register?gmail=null&pw=null&id=null
+![image](https://user-images.githubusercontent.com/61652299/139570079-b5d4a0ff-2168-4c93-8f08-3bae1bba4e8c.png)
 
-**POST** login/signin?id=null&pw=null
-
-**GET** login/signout?token=null
-
-**GET** user/info/id=null
-
-**GET** meeting?id=null&token=null
-
-**PUT** meeting/update?id=null&token=null&meeting=null
+![image](https://user-images.githubusercontent.com/61652299/139570095-10e2593b-9109-498a-b1bf-c335a98835a3.png)
