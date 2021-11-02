@@ -45,6 +45,18 @@ class Meeting:
             "id" : id,
             "data" : category
         }
+
+    @meeting_router.get("/share/meeting")
+    async def share_meeting(self, name: str, id: int, pwd: str, link: str, time: str, repeating_day: str, meet: str):
+        return {
+            "name" : name,
+            "id" : id,
+            "pwd" : pwd,
+            "link" : link,
+            "time" : time,
+            "repeating_days" : repeating_day,
+            "meet" : meet
+        }
     
     @meeting_router.post("/schedule/{id}")
     async def edit_schedule(self, id: int, meeting: Meeting):
