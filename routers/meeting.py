@@ -55,7 +55,9 @@ class Meeting:
             "link" : link,
             "time" : time,
             "repeating_days" : repeating_day,
-            "meet" : meet
+            "meet" : meet,
+            "category" : "",
+            #category, nickname, url
         }
     
     @meeting_router.post("/schedule/{id}")

@@ -17,6 +17,7 @@ class Meeting:
     repeating_days: str
     nickname: str
     meet: str
+    url: Optional[str] = None
     name: str = "Meeting"
 
     def to_dict(self):
