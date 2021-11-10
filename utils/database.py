@@ -31,7 +31,7 @@ class Database:
             }
         )
 
-        self.cursor.execute(f" INSERT INTO User(id,email,pw,current_category) VALUES({id},'{email}','{pw}','sample') ")
+        self.cursor.execute(f" INSERT INTO User(id,email,pw,current_category) VALUES({id},'{email}','{pw}','example') ")
         self.cursor.execute(f''' INSERT INTO Category(id,category) VALUES({id}, '["example"]') ''')
         self.cursor.execute(f''' INSERT INTO Meetings(id,meetings) VALUES({id}, '{meetings}') ''')
         self.conn.commit()
